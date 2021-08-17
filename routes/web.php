@@ -30,16 +30,4 @@ Route::prefix('painel')->group(function(){
 
     Route::get('profile', 'Admin\ProfileController@index')->name('profile');
     Route::put('profilesave', 'Admin\ProfileController@save')->name('profile.save');
-
-    Route::get('add-conta', 'Admin\AddContaController@index')->name('addconta');
-    Route::post('add-conta-post', 'Admin\AddcontaController@create')->name('add-conta-post');
-
-    Route::get('pagar-conta/{id}', 'Admin\AddContaController@pay')->name('pagarconta');
-    Route::post('pagar-conta-post/{id}', 'Admin\AddcontaController@paypost')->name('pagar-conta-post');
-
-    Route::get('todas-contas', 'Admin\VerContasController@index')->name('ver-contas');
-    Route::get('contas-em-aberto', 'Admin\VerContasController@open')->name('contas-em-aberto');
-
-    Route::get('contas-resultado-filtro', 'Admin\VerContasController@filteresult')->name('contas-filtro');
-    Route::post('contas-resultado-filtro', 'Admin\VerContasController@filterpost')->name('post-filtro');
 });

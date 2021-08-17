@@ -15,8 +15,8 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'Floristerra -',
-    'title_postfix' => '',
+    'title_prefix' => '',
+    'title_postfix' => '- Cebram',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => 'Floris<b>terra</b>',
+    'logo' => 'Ce<b>bram</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -191,7 +191,7 @@ return [
     'dashboard_url' => 'painel',
     'logout_url' => 'painel/logout',
     'login_url' => 'painel/login',
-    'register_url' => 'painel/registro',// false,
+    'register_url' => 'painel/register',// false,
     'password_reset_url' => false,// 'password/reset',
     'password_email_url' => false,// 'password/email',
     'profile_url' => false,
@@ -238,13 +238,11 @@ return [
                 [
                     'text' => 'Adicionar conta',
                     'url'  => 'painel/add-conta',
-                    'icon_color' => 'green',
                     'icon' => 'fas fa-plus-square'
                 ],
                 [
                     'text' => 'Contas em aberto',
                     'url'  => 'painel/contas-em-aberto',
-                    'icon_color' => 'red',
                     'icon' => 'far fa-eye',
                 ],
                 [
