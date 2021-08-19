@@ -30,4 +30,10 @@ Route::prefix('painel')->group(function(){
 
     Route::get('profile', 'Admin\ProfileController@index')->name('profile');
     Route::put('profilesave', 'Admin\ProfileController@save')->name('profile.save');
+
+    Route::get('novo-exame', 'Admin\ExamesController@index')->name('novo-exame');
+
+    Route::get('nova-consulta', 'Admin\ConsultasController@index')->name('nova-consulta');
+
+    Route::get('pacientes', 'Admin\PacientesController@index')->name('pacientes');
 });

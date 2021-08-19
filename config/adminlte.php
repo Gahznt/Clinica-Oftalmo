@@ -231,7 +231,34 @@ return [
             'url'         => 'painel',
             'icon'        => 'fas fa-home',
         ],
+        ['header' => 'Operações'],
         [
+            'text' => 'Pacientes',
+            'url'  => 'painel/pacientes',
+            'icon' => 'fas fa-users',
+        ],
+                [
+            'text'    => 'Cadastros',
+            'icon'    => 'fas fa-plus',
+            'submenu' => [
+                [
+                    'text' => 'Nova Consulta',
+                    'url'  => 'painel/nova-consulta',
+                    'icon' => 'fas fa-angle-right',
+                ],
+                [
+                    'text' => 'Novo Exame',
+                    'url'  => 'painel/novo-exame',
+                    'icon' => 'fas fa-angle-right',
+                ],
+                [
+                    'text' => 'Novo Paciente',
+                    'url'  => '#',
+                    'icon' => 'fas fa-angle-right',
+                ],
+            ],
+        ],        
+       /* [
             'text'    => 'Operações',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -252,7 +279,7 @@ return [
                     'label_color' => 'danger',
                     'icon_color' => 'blue',
                     'icon' => 'far fa-eye',
-                    /*'submenu' => [
+                    'submenu' => [
                         [
                             'text' => 'level_two',
                             'url'  => '#',
@@ -271,33 +298,33 @@ return [
                                 ],
                             ],
                         ],
-                    ],*/
+                    ],
                 ],
-                /*[
+                [
                     'text' => 'level_one',
                     'url'  => '#',
-                ],*/
+                ],
             ],
         ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon'    => 'fas fa-exclamation-circle',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon'    => 'fas fa-exclamation-circle',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon'    => 'fas fa-exclamation-circle',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+         ['header' => 'labels'],
+         [
+             'text'       => 'important',
+             'icon'    => 'fas fa-exclamation-circle',
+             'icon_color' => 'red',
+             'url'        => '#',
+         ],
+         [
+             'text'       => 'warning',
+             'icon'    => 'fas fa-exclamation-circle',
+             'icon_color' => 'yellow',
+             'url'        => '#',
+         ],
+         [
+             'text'       => 'information',
+             'icon'    => 'fas fa-exclamation-circle',
+             'icon_color' => 'cyan',
+             'url'        => '#',
+         ],*/
         
         ['header' => 'Ferramentas de Administrador'],
         [
