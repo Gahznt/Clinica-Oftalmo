@@ -38,7 +38,7 @@ Route::prefix('painel')->group(function(){
     Route::get('cadastro-de-paciente', 'Admin\PacientesController@cadastro')->name('cadastro-de-paciente');
     Route::post('cadastro-de-paciente-post', 'Admin\PacientesController@cadastro_post')->name('cadastro-de-paciente-post');
 
-    Route::get('nova-consulta', 'Admin\ConsultasController@index')->name('nova-consulta');
+    Route::get('prontuario/nova-consulta/{id}', 'Admin\ConsultasController@index')->name('nova-consulta');
 
     Route::get('pacientes', 'Admin\PacientesController@index')->name('pacientes');
     Route::post('pacientes-edit/{id}', 'Admin\ProntuariosController@edit')->name('pacientes-edit');

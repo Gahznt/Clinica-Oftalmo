@@ -15,13 +15,21 @@ class Pacientes extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->date('dat_nascimento');
-            $table->string('sexo', 100);
-            $table->string('cpf', 100);
-            $table->Text('endereco');
-            $table->string('telefone', 100);
-            $table->string('convenio', 100);
+            $table->string('paciente_id', 100);
+            $table->dateTime('inicio');
+            $table->dateTime('fim');
+            $table->string('queixa', 280);
+            $table->string('diagnostico', 280);
+            $table->string('rdod', 32);
+            $table->string('rdoe', 32);
+            $table->string('rdad', 32);
+            $table->string('reod', 32);
+            $table->string('reoe', 32);
+            $table->string('read', 32);
+        });
+
+        Schema::table('pacientes', function (Blueprint $table) {
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
         });
     }
 

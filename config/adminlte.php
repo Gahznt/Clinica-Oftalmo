@@ -242,11 +242,6 @@ return [
             'icon'    => 'fas fa-plus',
             'submenu' => [
                 [
-                    'text' => 'Nova Consulta',
-                    'url'  => 'painel/nova-consulta',
-                    'icon' => 'fas fa-angle-right',
-                ],
-                [
                     'text' => 'Novo Exame',
                     'url'  => 'painel/novo-exame',
                     'icon' => 'fas fa-angle-right',

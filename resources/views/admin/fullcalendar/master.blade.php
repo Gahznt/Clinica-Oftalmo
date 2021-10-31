@@ -19,19 +19,62 @@
 <script src="assets/fullcalendar/fullcalendar.js"></script>
 <script src="assets/fullcalendar/lang/pt-br.js"></script>
 <!-- Main content -->
-<div class="card" hidden>
-    <div class="card-body">
-        <div id="external-events">
-            <div class="checkbox">
-                <label for="drop-remove">
-                    <input type="checkbox" id="drop-remove" checked hidden>
-                </label>
+<div class="row">
+<div class="col-md-3">
+    <div class="sticky-top mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Draggable Events</h4>
+            </div>
+            <div class="card-body">
+                <!-- the events -->
+                <div id="external-events">
+                    <div class="external-event bg-success">Lunch</div>
+                    <div class="external-event bg-warning">Go home</div>
+                    <div class="external-event bg-info">Do homework</div>
+                    <div class="external-event bg-primary">Work on UI design</div>
+                    <div class="external-event bg-danger">Sleep tight</div>
+                    <div class="checkbox">
+                        <label for="drop-remove">
+                            <input type="checkbox" id="drop-remove">
+                            remove after drop
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Create Event</h3>
+            </div>
+            <div class="card-body">
+                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                    <ul class="fc-color-picker" id="color-chooser">
+                        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
+                        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
+                        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
+                        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
+                        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /btn-group -->
+                <div class="input-group">
+                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                    <div class="input-group-append">
+                        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                    </div>
+                    <!-- /btn-group -->
+                </div>
+                <!-- /input-group -->
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+
+    <div class="col-md-9">
         <div class="card card-primary">
             <div class="card-body">
                 <!-- THE CALENDAR -->
@@ -69,6 +112,7 @@
                 var eventObject = {
                     title: $.trim($(this).text()) // use the element's text as the event title
                 }
+                console.log('aquiiiiiiiiiiiiiiii',eventObject);
 
                 // store the Event Object in the DOM element so we can get to it later
                 $(this).data('eventObject', eventObject)
@@ -88,6 +132,7 @@
         /* initialize the calendar
          -----------------------------------------------------------------*/
         //Date for the calendar events (dummy data)
+
         var date = new Date()
         var d = date.getDate(),
             m = date.getMonth(),
@@ -119,7 +164,7 @@
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             },
             themeSystem: 'bootstrap',
             //Random default events
@@ -162,10 +207,14 @@
                     // if so, remove the element from the "Draggable Events" list
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
+                console.log("aquiiiiiiiii2",info)
             }
+            
         });
 
         calendar.render();
+        console.log('new event',calendar.getEvents);
+
         // $('#calendar').fullCalendar()
 
         /* ADDING EVENTS */
