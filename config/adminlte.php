@@ -16,7 +16,7 @@ return [
 
     'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '- Cebram',
+    'title_postfix' => '- Instituto Marcelo Marinho',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => 'Ce<b>bram</b>',
+    'logo' => 'Instituto <b>Marcelo M.</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-light elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -251,11 +251,6 @@ return [
                     'url'  => 'painel/novo-exame',
                     'icon' => 'fas fa-angle-right',
                 ],
-                [
-                    'text' => 'Novo Paciente',
-                    'url'  => '#',
-                    'icon' => 'fas fa-angle-right',
-                ],
             ],
         ],        
        /* [
@@ -325,7 +320,11 @@ return [
              'icon_color' => 'cyan',
              'url'        => '#',
          ],*/
-        
+         [
+            'text' => 'Agenda',
+            'url'  => 'painel/agenda',
+            'icon' => 'far fa-calendar',
+        ],
         ['header' => 'Ferramentas de Administrador'],
         [
             'text' => 'Meus Usuários',

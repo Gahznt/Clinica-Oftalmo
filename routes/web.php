@@ -22,6 +22,8 @@ Route::prefix('painel')->group(function(){
     Route::post('login', 'Admin\Auth\LoginController@authenticate')->name('authenticate');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('logout');
 
+    Route::get('agenda', 'Admin\AgendaController@index')->name('agenda');
+
     Route::get('users', 'Admin\UserController@index')->name('users');
     Route::resource('users', 'Admin\UserController');
     
@@ -33,7 +35,13 @@ Route::prefix('painel')->group(function(){
 
     Route::get('novo-exame', 'Admin\ExamesController@index')->name('novo-exame');
 
+    Route::get('cadastro-de-paciente', 'Admin\PacientesController@cadastro')->name('cadastro-de-paciente');
+    Route::post('cadastro-de-paciente-post', 'Admin\PacientesController@cadastro_post')->name('cadastro-de-paciente-post');
+
     Route::get('nova-consulta', 'Admin\ConsultasController@index')->name('nova-consulta');
 
     Route::get('pacientes', 'Admin\PacientesController@index')->name('pacientes');
+    Route::post('pacientes-edit/{id}', 'Admin\ProntuariosController@edit')->name('pacientes-edit');
+
+    Route::get('prontuario/{id}', 'Admin\ProntuariosController@index')->name('prontuario')->middleware('auth');
 });

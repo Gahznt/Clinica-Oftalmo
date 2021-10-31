@@ -53,7 +53,7 @@
                     </div>
             </div>
             <!-- /.card-body -->
-                <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
 
         </div>
