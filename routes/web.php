@@ -22,7 +22,8 @@ Route::prefix('painel')->group(function(){
     Route::post('login', 'Admin\Auth\LoginController@authenticate')->name('authenticate');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('logout');
 
-    Route::get('agenda', 'Admin\AgendaController@index')->name('agenda');
+    Route::get('agendamento/{id}', 'Admin\AgendaController@index')->name('agendamento');
+    Route::post('agendamento-post', 'Admin\AgendaController@agendamento_post')->name('agendamento-post');
 
     Route::get('users', 'Admin\UserController@index')->name('users');
     Route::resource('users', 'Admin\UserController');

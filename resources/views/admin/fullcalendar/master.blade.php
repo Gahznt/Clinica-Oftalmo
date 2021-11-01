@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('title', 'Agenda')
 @section('content_header')
 <link rel="stylesheet" href="{{asset ('assets/fullcalendar/main.css') }}">
 <div class="container-fluid">
@@ -20,65 +21,100 @@
 <script src="assets/fullcalendar/lang/pt-br.js"></script>
 <!-- Main content -->
 <div class="row">
-<div class="col-md-3">
-    <div class="sticky-top mb-3">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Draggable Events</h4>
-            </div>
-            <div class="card-body">
-                <!-- the events -->
-                <div id="external-events">
-                    <div class="external-event bg-success">Lunch</div>
-                    <div class="external-event bg-warning">Go home</div>
-                    <div class="external-event bg-info">Do homework</div>
-                    <div class="external-event bg-primary">Work on UI design</div>
-                    <div class="external-event bg-danger">Sleep tight</div>
-                    <div class="checkbox">
-                        <label for="drop-remove">
-                            <input type="checkbox" id="drop-remove">
-                            remove after drop
-                        </label>
+    <div class="col-md-3">
+        <div class="sticky-top mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Draggable Events</h4>
+                </div>
+                <div class="card-body">
+                    <!-- the events -->
+                    <div id="external-events">
+                        <div class="external-event bg-success">Lunch</div>
+                        <div class="external-event bg-warning">Go home</div>
+                        <div class="external-event bg-info">Do homework</div>
+                        <div class="external-event bg-primary">Work on UI design</div>
+                        <div class="external-event bg-danger">Sleep tight</div>
+                        <div class="checkbox">
+                            <label for="drop-remove">
+                                <input type="checkbox" id="drop-remove">
+                                remove after drop
+                            </label>
+                        </div>
                     </div>
                 </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Create Event</h3>
-            </div>
-            <div class="card-body">
-                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <ul class="fc-color-picker" id="color-chooser">
-                        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                    </ul>
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Create Event</h3>
                 </div>
-                <!-- /btn-group -->
-                <div class="input-group">
-                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-
-                    <div class="input-group-append">
-                        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                <div class="card-body">
+                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                        <ul class="fc-color-picker" id="color-chooser">
+                            <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
+                            <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
+                            <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
+                            <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
+                            <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                        </ul>
                     </div>
                     <!-- /btn-group -->
+                    <div class="input-group">
+                        <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                        <div class="input-group-append">
+                            <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    <!-- /input-group -->
                 </div>
-                <!-- /input-group -->
             </div>
         </div>
     </div>
-</div>
 
     <div class="col-md-9">
         <div class="card card-primary">
             <div class="card-body">
                 <!-- THE CALENDAR -->
                 <div id="calendar"></div>
+                <div class="modal fade" id="consulta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmar Agendamento de Consulta</h5>
+                            </div>
+                            <form action="{{route('agendamento-post')}}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Nome do Paciente:</label>
+                                        <input type="text" class="form-control" id="recipient-name" value="{{$paciente_infos->name}}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">CPF do Paciente:</label>
+                                        <input type="text" class="form-control" id="recipient-name" value="{{$paciente_infos->cpf}}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Hora Inicio Consulta:</label>
+                                        <input type="text" class="form-control" id="start" name="inicio"readonly>
+                                    </div>
+                                    <input type="text" class="form-control" id="id" name="id" value="{{$paciente_infos->id}}" hidden readonly>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Hora Termino Consulta:</label>
+                                        <input type="text" class="form-control" id="end" name="fim" readonly>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Agendar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -101,7 +137,6 @@
 
 <script>
     $(function() {
-
         /* initialize the external events
          -----------------------------------------------------------------*/
         function ini_events(ele) {
@@ -112,7 +147,7 @@
                 var eventObject = {
                     title: $.trim($(this).text()) // use the element's text as the event title
                 }
-                console.log('aquiiiiiiiiiiiiiiii',eventObject);
+
 
                 // store the Event Object in the DOM element so we can get to it later
                 $(this).data('eventObject', eventObject)
@@ -166,6 +201,13 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             },
+            slotDuration: '00:05:00',
+            select: function(start, end) {
+                $('#consulta #start').val(moment(start.startStr).format('DD/MM/YYYY HH:mm:ss'));
+                $('#consulta #end').val(moment(start.endStr).format('DD/MM/YYYY HH:mm:ss'));
+                $('#consulta').modal('show');
+            },
+            selectable: true,
             themeSystem: 'bootstrap',
             //Random default events
             events: [{
@@ -207,13 +249,12 @@
                     // if so, remove the element from the "Draggable Events" list
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
-                console.log("aquiiiiiiiii2",info)
             }
-            
+
         });
 
         calendar.render();
-        console.log('new event',calendar.getEvents);
+        console.log('new event', calendar.getEvents);
 
         // $('#calendar').fullCalendar()
 

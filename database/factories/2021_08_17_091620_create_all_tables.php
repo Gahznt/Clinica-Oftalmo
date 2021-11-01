@@ -21,6 +21,7 @@ class CreateAllTables extends Migration
             $table->string('remember_token', 100)->nullable();
             $table->tinyInteger('admin')->nullable();
         });
+        
     }
 
     /**

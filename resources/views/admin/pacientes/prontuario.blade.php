@@ -72,7 +72,7 @@
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
                             <!-- Post -->
-                            <a class="btn btn-sm btn-success text-light" href="{{route('nova-consulta', $paciente_infos->id)}}">Agendar nova consulta</a>
+                            <a class="btn btn-sm btn-success text-light" href="{{route('agendamento', $paciente_infos->id)}}">Agendar nova consulta</a>
                             <hr>
                             <p class="lead">Historico de consultas</p>
                             <div class="card card-dark collapsed-card">
