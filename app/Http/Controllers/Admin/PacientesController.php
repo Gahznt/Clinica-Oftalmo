@@ -14,6 +14,19 @@ class PacientesController extends Controller
             'pacientes' => $pacientes
         ]);
     }
+
+    public function index_filtro(Request $request) {
+
+        $data = $request->only([
+            'search'
+        ]);
+
+        $pacientes = Paciente::where('name', 'like', '%'.$data['search'].'%')->orWhere('cpf', 'like', '%'.$data['search'].'%')->orWhere('telefone', 'like', '%'.$data['search'].'%')->orWhere('convenio', 'like', '%'.$data['search'].'%')->get();
+
+        return view('admin.pacientes.index_filtro', [
+            'pacientes' => $pacientes
+        ]);
+    }
     public function cadastro() {
         return view('admin.pacientes.cadastro');
     }

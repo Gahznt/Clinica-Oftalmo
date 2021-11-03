@@ -44,5 +44,7 @@ Route::prefix('painel')->group(function(){
     Route::get('pacientes', 'Admin\PacientesController@index')->name('pacientes');
     Route::post('pacientes-edit/{id}', 'Admin\ProntuariosController@edit')->name('pacientes-edit');
 
+    Route::get('pacientes-filtro', 'Admin\PacientesController@index_filtro')->name('pacientes-filtro');
+
     Route::get('prontuario/{id}', 'Admin\ProntuariosController@index')->name('prontuario')->middleware('auth');
 });
