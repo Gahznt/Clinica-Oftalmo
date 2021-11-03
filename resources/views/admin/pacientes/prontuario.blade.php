@@ -20,8 +20,6 @@
 
                     <h3 class="profile-username text-center">{{$paciente_infos->name}}</h3>
 
-                    <p class="text-muted text-center">Software Engineer</p>
-
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>CPF</b> <a class="float-right">{{$paciente_infos->cpf}}</a>
@@ -35,28 +33,18 @@
                         <li class="list-group-item">
                             <b>Dt. Nascimento</b> <a class="float-right">{{date("d/m/Y", strtotime($paciente_infos->dat_nascimento ))}}</a>
                         </li>
+                        <li class="list-group-item">
+                            <b>Convenio:</b> <a class="float-right">{{$paciente_infos->convenio}}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b><i class="fas fa-map-marker-alt mr-1"></i>Endereço:</b>
+                            <p class="float-right">{{$paciente_infos->endereco}}</p>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.card-body -->
             </div>
-            <!-- /.card -->
 
-            <!-- About Me Box -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Mais Informações</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Endereço</strong>
-                    <p class="text-muted">{{$paciente_infos->endereco}}</p>
-                    <hr>
-                    <strong><i class="far fa-file-alt mr-1"></i> Convenio</strong>
-                    <p class="text-muted">{{$paciente_infos->convenio}}</p>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
         </div>
         <!-- /.col -->
         <div class="col-md-9">
@@ -75,9 +63,10 @@
                             <a class="btn btn-sm btn-success text-light" href="{{route('agendamento', $paciente_infos->id)}}">Agendar nova consulta</a>
                             <hr>
                             <p class="lead">Historico de consultas</p>
+                            @foreach ($consultas as $consulta)
                             <div class="card card-dark collapsed-card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Consulta - dia 23/10/2021</h3>
+                                    <h3 class="card-title">Consulta - <b>{{date("d/m/Y", strtotime($consulta->inicio))}}</b></h3>
 
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -88,46 +77,89 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body bg-secondary">
-                                    The body of the card
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-
-                            <div class="card card-dark collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Consulta - dia 23/10/2021</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
+                                    <b>Data da consulta:</b> {{date("d/m/Y", strtotime($consulta->inicio))}} <b>Horário:</b> {{date("H:i", strtotime($consulta->inicio))}}
+                                    <hr>
+                                    Queixa do paciente: <p>{{$consulta->queixa}}</p>
+                                    <hr>
+                                    Diagnostico: <p>{{$consulta->diagnostico}}</p>
+                                    <hr>
+                                    Refração Dinâmica
+                                    <div class="container">
+                                        <div class="row">
+                                            OD:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->rdod}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                            
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            OE:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->rdoe}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            AD:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->rdad}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- /.card-tools -->
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body border">
-                                    The body of the card
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-
-                            <div class="card card-dark collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Consulta - dia 23/10/2021</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
+                                    <hr>
+                                    Refração Estática
+                                    <div class="container">
+                                        <div class="row">
+                                            OD:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->reod}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            OE:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->reoe}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            AD:
+                                            <div class="col-2 border ml-1" align="center">
+                                            {{$consulta->read}}
+                                            </div>
+                                            <div class="col-2 border" align="center">
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- /.card-tools -->
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    The body of the card
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            @endforeach
                         </div>
                         <!--                          /Exames                              -->
                         <div class="tab-pane" id="timeline">
@@ -244,8 +276,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" name="sexo">Sexo</label>
                                     <div class="col-sm-3">
-                                        <select class="form-control" name="sexo" required>
-                                            <option value=""></option>
+                                        <select class="form-control" name="sexo">
+                                            <option value="{{$paciente_infos->sexo}}"></option>
                                             <option value="Masculino">Masculino</option>
                                             <option value="Feminino">Feminino</option>
                                         </select>

@@ -5,12 +5,12 @@
 <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Agenda</h1>
+            <h1>Agendar consulta para <b>{{$paciente_infos->name}}</b></h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{ route('admin')}}">Página Inicial</a></li>
-                <li class="breadcrumb-item active">Agenda</li>
+                <li class="breadcrumb-item"><a href="{{ route('pacientes')}}">Pacientes</a></li>
+                <li class="breadcrumb-item active">Agendar consulta</li>
             </ol>
         </div>
     </div>
@@ -22,54 +22,47 @@
 <!-- Main content -->
 <div class="row">
     <div class="col-md-3">
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="{{url('storage/images/user.png')}}" alt="User profile">
+                </div>
+
+                <h3 class="profile-username text-center">{{$paciente_infos->name}}</h3>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>CPF:</b> <a class="float-right">{{$paciente_infos->cpf}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Sexo:</b> <a class="float-right">{{$paciente_infos->sexo}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Telefone:</b> <a class="float-right">{{$paciente_infos->telefone}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Dt. Nascimento:</b> <a class="float-right">{{date("d/m/Y", strtotime($paciente_infos->dat_nascimento ))}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Convenio:</b> <a class="float-right">{{$paciente_infos->convenio}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b><i class="fas fa-map-marker-alt mr-1"></i>Endereço:</b> <p class="float-right">{{$paciente_infos->endereco}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3" hidden>
         <div class="sticky-top mb-3">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Draggable Events</h4>
                 </div>
                 <div class="card-body">
-                    <!-- the events -->
                     <div id="external-events">
-                        <div class="external-event bg-success">Lunch</div>
-                        <div class="external-event bg-warning">Go home</div>
-                        <div class="external-event bg-info">Do homework</div>
-                        <div class="external-event bg-primary">Work on UI design</div>
-                        <div class="external-event bg-danger">Sleep tight</div>
-                        <div class="checkbox">
-                            <label for="drop-remove">
-                                <input type="checkbox" id="drop-remove">
-                                remove after drop
-                            </label>
-                        </div>
                     </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Create Event</h3>
-                </div>
-                <div class="card-body">
-                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                        <ul class="fc-color-picker" id="color-chooser">
-                            <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                            <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                            <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                            <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                            <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /btn-group -->
-                    <div class="input-group">
-                        <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-
-                        <div class="input-group-append">
-                            <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                        </div>
-                        <!-- /btn-group -->
-                    </div>
-                    <!-- /input-group -->
                 </div>
             </div>
         </div>
@@ -99,12 +92,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Hora Inicio Consulta:</label>
-                                        <input type="text" class="form-control" id="start" name="inicio"readonly>
+                                        <input type="text" class="form-control" id="start" name="inicio" readonly>
                                     </div>
                                     <input type="text" class="form-control" id="id" name="id" value="{{$paciente_infos->id}}" hidden readonly>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Hora Termino Consulta:</label>
                                         <input type="text" class="form-control" id="end" name="fim" readonly>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label for="drop-remove">
+                                            <input type="checkbox" required>
+                                            Confirmo os dados da consulta
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -210,36 +209,21 @@
             selectable: true,
             themeSystem: 'bootstrap',
             //Random default events
-            events: [{
-                    title: 'All Day Event',
-                    start: new Date(y, m, 1),
-                    backgroundColor: '#f56954', //red
-                    borderColor: '#f56954', //red
-                    allDay: true
-                },
-                {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 10, 30),
-                    allDay: false,
-                    backgroundColor: '#0073b7', //Blue
-                    borderColor: '#0073b7' //Blue
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false,
-                    backgroundColor: '#00c0ef', //Info (aqua)
-                    borderColor: '#00c0ef' //Info (aqua)
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d + 1, 19, 0),
-                    end: new Date(y, m, d + 1, 22, 30),
-                    allDay: false,
-                    backgroundColor: '#00a65a', //Success (green)
-                    borderColor: '#00a65a' //Success (green)
-                },
+            events: [
+                <?php foreach ($consultas as $consulta) {
+                ?>
+
+                    {
+                        title: '<?php echo ($consulta->nomepaciente[0]->name) ?>',
+                        start: '<?php echo ($consulta->inicio) ?>',
+                        end: '<?php echo ($consulta->fim) ?>',
+                        backgroundColor: '#f56954', //red
+                        borderColor: '#f56954', //red
+                        allDay: false
+                    },
+
+                <?php };
+                ?>
             ],
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
@@ -254,7 +238,7 @@
         });
 
         calendar.render();
-        console.log('new event', calendar.getEvents);
+        console.log('->', calendar.events);
 
         // $('#calendar').fullCalendar()
 

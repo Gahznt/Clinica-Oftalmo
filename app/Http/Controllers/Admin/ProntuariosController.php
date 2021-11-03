@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Paciente;
+use App\Consulta;
 
 class ProntuariosController extends Controller
 {
     public function index($id) {
         $paciente_infos = Paciente::find($id);
+        $consultas = Consulta::where('paciente_id', $paciente_infos->id)->get();
         return view('admin.pacientes.prontuario', [
             'paciente_infos' => $paciente_infos,
+            'consultas' => $consultas
         ]);
     }
 
